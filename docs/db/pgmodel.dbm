@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.2.0" use-changelog="false" max-obj-count="6"
+	 gen-disabled-objs-code="false" show-sys-schemas-rects="true"
+	 last-position="251,-291" last-zoom="1" scene-rect="0,-430,1570.8,1506.8"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<role name="cadence_user"
+ createdb="true"
+ replication="true"
+ login="true">
+</role>
+
+<database name="cadence" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
+</schema>
+
+<schema name="school" layers="0" rect-visible="true" fill-color="#e1e1e1" name-color="#31363b">
+	<role name="cadence_user"/>
+</schema>
+
+<usertype name="GENDER" configuration="enumeration">
+	<schema name="school"/>
+	<role name="cadence_user"/>
+	<enumeration label="MALE"/>
+	<enumeration label="FEMALE"/>
+</usertype>
+
+<table name="person" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="school"/>
+	<role name="cadence_user"/>
+	<position x="660" y="-80"/>
+	<column name="id" not-null="true" default-value="gen_random_uuid()">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="identifier" not-null="true">
+		<type name="varchar" length="0"/>
+		<comment> <![CDATA[More readable identifier]]> </comment>
+	</column>
+	<column name="first_name">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="last_name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="gender" not-null="true">
+		<type name="school.&quot;GENDER&quot;" length="0"/>
+	</column>
+	<column name="role_id">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="tutor_pk" type="pk-constr" table="school.person">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="tutor_identifier_uk" type="uq-constr" table="school.person">
+		<columns names="identifier" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<usertype name="TUTORING_TYPE" configuration="enumeration">
+	<schema name="school"/>
+	<role name="cadence_user"/>
+	<enumeration label="MOTHER"/>
+	<enumeration label="FATHER"/>
+	<enumeration label="TUTOR"/>
+</usertype>
+
+<table name="tutoring" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="school"/>
+	<role name="cadence_user"/>
+	<position x="620" y="360"/>
+	<column name="tutor_id" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="tutee_id" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="tutoring_type" not-null="true" default-value="school.&quot;TUTORING_TYPE&quot;.TUTOR">
+		<type name="school.&quot;TUTORING_TYPE&quot;" length="0"/>
+	</column>
+	<constraint name="tutoring_pk" type="pk-constr" table="school.tutoring">
+		<columns names="tutor_id,tutee_id,tutoring_type" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="tutoring_tutor_tutee_different_ck" type="ck-constr" table="school.tutoring">
+			<expression> <![CDATA[tutor_id <> tutee_id]]> </expression>
+	</constraint>
+</table>
+
+<table name="person_role" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="school"/>
+	<role name="cadence_user"/>
+	<position x="1220" y="-40"/>
+	<column name="id" not-null="true" default-value="gen_random_uuid()">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="role_uq" type="uq-constr" table="school.person_role">
+		<columns names="name" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="person_role_pk" type="pk-constr" table="school.person_role">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="person_info" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="school"/>
+	<role name="cadence_user"/>
+	<position x="1220" y="-380"/>
+	<column name="id" not-null="true" default-value="gen_random_uuid()">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="description">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="person_info_uq" type="uq-constr" table="school.person_info">
+		<columns names="name" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="person_info_pk" type="pk-constr" table="school.person_info">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="info_value" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="school"/>
+	<role name="cadence_user"/>
+	<position x="660" y="-380"/>
+	<column name="info_id" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="person_id" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="value" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="info_value_pk" type="pk-constr" table="school.info_value">
+		<columns names="info_id,person_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="person_role_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="school.person_role" table="school.person">
+	<columns names="role_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tutoring_tutor_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="school.person" table="school.tutoring">
+	<columns names="tutor_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="tutoring_tutee_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="school.person" table="school.tutoring">
+	<columns names="tutee_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="info_value_info_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="school.person_info" table="school.info_value">
+	<columns names="info_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="info_value_person_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="school.person" table="school.info_value">
+	<columns names="person_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_tutoring_tutor" type="relfk" layers="0"
+	 src-table="school.tutoring"
+	 dst-table="school.person" reference-fk="tutoring_tutor_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_person_person_role" type="relfk" layers="0"
+	 src-table="school.person"
+	 dst-table="school.person_role" reference-fk="person_role_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_tutoring_person" type="relfk" layers="0"
+	 src-table="school.tutoring"
+	 dst-table="school.person" reference-fk="tutoring_tutee_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_info_value_person_info" type="relfk" layers="0"
+	 src-table="school.info_value"
+	 dst-table="school.person_info" reference-fk="info_value_info_fk"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_info_value_person" type="relfk" layers="0"
+	 src-table="school.info_value"
+	 dst-table="school.person" reference-fk="info_value_person_fk"
+	 src-required="false" dst-required="true"/>
+
+</dbmodel>
