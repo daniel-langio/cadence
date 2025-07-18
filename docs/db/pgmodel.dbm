@@ -5,7 +5,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 -->
 <dbmodel pgmodeler-ver="1.2.0" use-changelog="false" max-obj-count="6"
 	 gen-disabled-objs-code="false" show-sys-schemas-rects="true"
-	 last-position="251,-291" last-zoom="1" scene-rect="0,-430,1570.8,1506.8"
+	 last-position="0,0" last-zoom="1" scene-rect="0,0,1570.8,1076.8"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -24,7 +24,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <schema name="public" layers="0" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
 </schema>
 
-<schema name="school" layers="0" rect-visible="true" fill-color="#e1e1e1" name-color="#31363b">
+<schema name="school" layers="0" fill-color="#e1e1e1" name-color="#31363b">
 	<role name="cadence_user"/>
 </schema>
 
@@ -35,10 +35,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<enumeration label="FEMALE"/>
 </usertype>
 
-<table name="person" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+<table name="person" layers="0" collapse-mode="1" max-obj-count="7" z-value="0">
 	<schema name="school"/>
 	<role name="cadence_user"/>
-	<position x="660" y="-80"/>
+	<position x="540" y="440"/>
 	<column name="id" not-null="true" default-value="gen_random_uuid()">
 		<type name="varchar" length="0"/>
 	</column>
@@ -74,10 +74,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<enumeration label="TUTOR"/>
 </usertype>
 
-<table name="tutoring" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+<table name="tutoring" layers="0" collapse-mode="1" max-obj-count="4" z-value="0">
 	<schema name="school"/>
 	<role name="cadence_user"/>
-	<position x="620" y="360"/>
+	<position x="500" y="80"/>
 	<column name="tutor_id" not-null="true">
 		<type name="varchar" length="0"/>
 	</column>
@@ -95,10 +95,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="person_role" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+<table name="person_role" layers="0" collapse-mode="1" max-obj-count="3" z-value="0">
 	<schema name="school"/>
 	<role name="cadence_user"/>
-	<position x="1220" y="-40"/>
+	<position x="1080" y="480"/>
 	<column name="id" not-null="true" default-value="gen_random_uuid()">
 		<type name="varchar" length="0"/>
 	</column>
@@ -116,10 +116,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="person_info" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+<table name="person_info" layers="0" collapse-mode="1" max-obj-count="3" z-value="0">
 	<schema name="school"/>
 	<role name="cadence_user"/>
-	<position x="1220" y="-380"/>
+	<position x="100" y="80"/>
 	<column name="id" not-null="true" default-value="gen_random_uuid()">
 		<type name="varchar" length="0"/>
 	</column>
@@ -137,10 +137,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="info_value" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+<table name="info_value" layers="0" collapse-mode="1" max-obj-count="3" z-value="0">
 	<schema name="school"/>
 	<role name="cadence_user"/>
-	<position x="660" y="-380"/>
+	<position x="100" y="480"/>
 	<column name="info_id" not-null="true">
 		<type name="varchar" length="0"/>
 	</column>
