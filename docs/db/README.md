@@ -9,3 +9,5 @@ A [pgmodeler](https://github.com/pgmodeler/pgmodeler) compatible model file is a
 An Conceptual model of the model is illustrated in the following picture.
 
 ![Conceptual Database Model](pgmodel.png)
+
+We used [pgmodeler](https://github.com/pgmodeler/pgmodeler) to make it by the way.
